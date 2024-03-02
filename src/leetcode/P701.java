@@ -5,16 +5,25 @@ import basic.TreeNode;
 public class P701 {
     // 递归法
     public TreeNode insertIntoBST(TreeNode root, int val) {
-        if (root == null) {
-            return new TreeNode(val);
-        }
+        // 往空树插入节点
+        if (root == null) return new TreeNode(val);
 
-        if (root.val < val) {
-            // 保持右子树的衔接
-            root.right = insertIntoBST(root.right, val);
-        } else {
-            // 保持左子树的衔接
-            root.left = insertIntoBST(root.left, val);
+        if (val < root.val) {
+            if (root.left != null) {
+                // 如果有左子树，则继续递归
+                root.left = insertIntoBST(root.left, val);
+            } else {
+                // 否则作为左子树
+                root.left = new TreeNode(val);
+            }
+        } else if (val > root.val) {
+            if (root.right != null) {
+                // 如果有右子树，则继续递归
+                root.right = insertIntoBST(root.right, val);
+            } else {
+                // 否则作为右子树
+                root.right = new TreeNode(val);
+            }
         }
 
         return root;

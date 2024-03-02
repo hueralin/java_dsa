@@ -6,13 +6,14 @@ public class P669 {
     public TreeNode trimBST(TreeNode root, int low, int high) {
         if (root == null) return null;
 
+        // root 不在区间内，直接返回，换根
         if (root.val < low) {
             return trimBST(root.right, low, high);
         } else if (root.val > high) {
             return trimBST(root.left, low, high);
         }
 
-        // root 在区间内
+        // root 在区间内，保留，查看左右子树
         root.left = trimBST(root.left, low, high);
         root.right = trimBST(root.right, low, high);
 

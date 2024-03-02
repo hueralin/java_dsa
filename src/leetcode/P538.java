@@ -22,17 +22,17 @@ public class P538 {
     // 递归 2
     private int prevVal;
     public TreeNode convertBST2(TreeNode root) {
-        traversal(root);
-        return root;
-    }
-    public void traversal(TreeNode root) {
-        if (root == null) return;
+        if (root == null) return null;
 
-        traversal(root.right);
-
+        // 先遍历右子树
+        convertBST2(root.right);
+        // 将上一个节点的值加上
         root.val += prevVal;
+        // 当前节点变为 prev
         prevVal = root.val;
+        // 开始遍历左子树
+        convertBST2(root.left);
 
-        traversal(root.left);
+        return root;
     }
 }

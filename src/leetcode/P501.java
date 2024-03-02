@@ -46,25 +46,35 @@ public class P501 {
     }
 
     // 递归法
+    // 记录最大次数
     private int maxCount;
+    // 记录当前次数，每个节点都可使用
     private int count;
+    // 记录上一个节点
     private TreeNode prev;
+    // 存储结果
     private List<Integer> list;
+
     public int[] findMode2(TreeNode root) {
         maxCount = Integer.MIN_VALUE;
         count = 0;
         prev = null;
         list = new LinkedList<>();
+
         traversal(root);
+
+        // 将结果放入数组
         int[] res = new int[list.size()];
         int i = 0;
         for (int e: list) {
             res[i++] = e;
         }
+
         return res;
     }
     public void traversal(TreeNode root) {
         if (root == null) return;
+
         traversal(root.left);
 
         if (prev == null) {
@@ -74,7 +84,7 @@ public class P501 {
             // 重复的节点，频率 +1
             count++;
         } else {
-            // 新节点，频率重置为 1
+            // 新节点，频率重置为 1（多个节点公用 count 的关键）
             count = 1;
         }
 

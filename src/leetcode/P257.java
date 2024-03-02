@@ -12,20 +12,21 @@ public class P257 {
         return res;
     }
 
-    public void helper(TreeNode node, String path, List<String> res) {
-        path += node.val;
-        // 叶子节点，一个解
-        if (node.left == null && node.right == null) {
+    public void helper(TreeNode root, String path, List<String> res) {
+        if (root == null) return;
+
+        // 进来就是访问，先拼接访问路径
+        path += root.val;
+
+        // 到达叶子节点，放入结果集
+        if (root.left == null && root.right == null) {
             res.add(path);
             return;
         }
-        if (node.left != null) {
-            // 这里并没有修改 path 的值
-            helper(node.left, path + "->", res);
-            // 但也是实现了回溯
-        }
-        if (node.right != null) {
-            helper(node.right, path + "->", res);
-        }
+
+        // 否则继续深入遍历，这里的 path + "->" 就是深入
+        // 而深入递归完，path 没变，就是回溯
+        helper(root.left, path + "->", res);
+        helper(root.right, path + "->", res);
     }
 }

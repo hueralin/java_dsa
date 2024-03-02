@@ -5,15 +5,27 @@ import basic.TreeNode;
 import java.util.LinkedList;
 import java.util.List;
 
+// 中序遍历，双指针技巧，记住上一个遍历的节点。根据二叉搜索树的有序性，中序遍历中上一个节点的值一定比当前节点的值小。
+
 public class P98 {
     private TreeNode prev;
     public boolean isValidBST(TreeNode root) {
         if (root == null) return true;
-        boolean left = isValidBST(root.left);
-        if (prev != null && root.val <= prev.val) return false;
+
+        // 左子树是不是 BST，不是就返回 false
+        boolean lb = isValidBST(root.left);
+        if (!lb) return false;
+
+        // 上个节点的值是否大于当前节点，是则失序，返回 false
+        if (prev != null && prev.val >= root.val) return false;
+        // root 作为 prev，开始遍历右子树
         prev = root;
-        boolean right = isValidBST(root.right);
-        return left && right;
+
+        // 右子树是不是 BST，不是就返回 false
+        boolean rb = isValidBST(root.right);
+        if (!rb) return false;
+
+        return true;
     }
 
     public boolean isValidBST2(TreeNode root) {
