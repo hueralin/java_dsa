@@ -38,6 +38,8 @@ public class P17 {
         char[] arr = map.get(digit);
         for (char elem: arr) {
             path.add(elem);
+            // 这里的 startIndex + 1 实际上控制的是对 digits 的访问，对 digits 中的下一个数字对应的 “字母集合” 的访问
+            // 并不是对本 “字母集合”（arr）的访问
             backtrace(digits, startIndex + 1);
             path.removeLast();
         }
