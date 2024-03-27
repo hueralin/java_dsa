@@ -37,8 +37,8 @@ public class P455 {
 
     public int findContentChildren2(int[] g, int[] s) {
         // 从大到小排序（MD，Java 不能这么写，真拉，JS 都可以）
-        Arrays.sort(g, (a, b) -> b - a);
-        Arrays.sort(s, (a, b) -> b - a);
+//        Arrays.sort(g, (a, b) -> b - a);
+//        Arrays.sort(s, (a, b) -> b - a);
 
         // 用于遍历孩子胃口
         int i = 0;

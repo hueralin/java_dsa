@@ -6,8 +6,9 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        MyMaxHeap heap = MyMaxHeap.heapify(arr);
-        heap.print();
+        int[] stones = {0,0,0,0,0,0,0,0,1};
+        P494 p = new P494();
+        int v = p.findTargetSumWays2(stones, 1);
+        System.out.println(v);
     }
 }
